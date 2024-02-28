@@ -1,0 +1,39 @@
+name: DT Android CI
+
+on:
+  pull_request:
+
+permissions:
+  contents: read # to fetch code (actions/checkout)
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+          submodules: true
+
+    - name: set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        distribution: temurin
+        java-version: 17
+        cache: gradle
+
+    - name: Validate Gradle Wrapper
+      uses: gradle/wrapper-validation-action@v1
+
+    - name: Build Contacts App with Gradle
+      run: ./gradlew microbenchmark:assembleDebug --parallel
+
+    - name: Upload to Data Theorem
+        uses: datatheorem/datatheorem-mobile-secure-action
+        with:
+          UPLOAD_BINARY_PATH: '**/contacts-app-debug.apk'
+          DT_UPLOAD_API_KEY: ${{ secrets.DT_UPLOAD_API_KEY }}
+          COMMENTS: 'This is a test'
+          RELEASE_ID: ${{ env.GITHUB_RUN_ID }}
+          EXTERNAL_ID: 'App_12230045'
