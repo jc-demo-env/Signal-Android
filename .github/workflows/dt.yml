@@ -27,7 +27,7 @@ jobs:
       uses: gradle/wrapper-validation-action@v1
 
     - name: Build Contacts App with Gradle
-      run: ./gradlew microbenchmark:assembleDebug --parallel
+      run: ./gradlew contacts-app:assembleDebug --parallel
 
     - name: Data Theorem Mobile Secure
       uses: datatheorem/datatheorem-mobile-secure-action@v2.2.0
