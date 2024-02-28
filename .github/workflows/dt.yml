@@ -29,8 +29,8 @@ jobs:
     - name: Build Contacts App with Gradle
       run: ./gradlew microbenchmark:assembleDebug --parallel
 
-    - name: Upload to Data Theorem
-      uses: datatheorem/datatheorem-mobile-secure-action
+    - name: Data Theorem Mobile Secure
+      uses: datatheorem/datatheorem-mobile-secure-action@v2.2.0
       with:
         UPLOAD_BINARY_PATH: '**/contacts-app-debug.apk'
         DT_UPLOAD_API_KEY: ${{ secrets.DT_UPLOAD_API_KEY }}
