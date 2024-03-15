@@ -36,4 +36,4 @@ jobs:
         DT_UPLOAD_API_KEY: ${{ secrets.DT_UPLOAD_API_KEY }}
         COMMENTS: 'This is a test'
         RELEASE_ID: ${{ env.GITHUB_RUN_ID }}
-        EXTERNAL_ID: 'App_12230051'
+        EXTERNAL_ID: 'App_12230050'
